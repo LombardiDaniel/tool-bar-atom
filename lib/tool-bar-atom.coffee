@@ -5,13 +5,19 @@ module.exports =
     consumeToolBar: (toolBar) ->
         @toolBar = toolBar 'tool-bar-atom'
 
-        if atom.packages.loadedPackages['project-manager']
-            @toolBar.addButton
-                'icon': 'file-submodule'
-                'tooltip': 'List projects'
-                'callback': 'project-manager:list-projects'
+        # if atom.packages.loadedPackages['project-manager']
+        #     @toolBar.addButton
+        #         'icon': 'file-submodule'
+        #         'tooltip': 'List projects'
+        #         'callback': 'project-manager:list-projects'
 
         @toolBar.addSpacer()
+
+        @toolBar.addButton
+            'icon': 'folder'
+            'callback': 'tree-view:toggle'
+            'tooltip': 'Toggle Sidebar'
+            'iconset': 'fa'
 
         if atom.packages.loadedPackages['expose']
             @toolBar.addButton
@@ -70,21 +76,12 @@ module.exports =
                 'callback': 'script:run'
                 'tooltip': 'Run script'
                 'iconset': 'fa'
-            # @toolBar.addButton
-            #     'icon': 'fast-forward'
-            #     'callback': 'script:run-by-line-number'
-            #     'tooltip': 'Run by Line Number'
-            #     'iconset': 'fa'
+
             @toolBar.addButton
                 'icon': 'stop'
                 'callback': 'script:kill-process'
                 'tooltip': 'Stop script'
                 'iconset': 'fa'
-            # @toolBar.addButton
-            #     'icon': 'cog'
-            #     'callback': 'script:run-options'
-            #     'tooltip': 'Configure script'
-            #     'iconset': 'fa'
 
         @toolBar.addSpacer()
         if atom.packages.loadedPackages['markdown-preview']
@@ -92,8 +89,8 @@ module.exports =
                 'icon': 'markdown'
                 'callback': 'markdown-preview:toggle'
                 'tooltip': 'Markdown Preview'
-        # if atom.packages.loadedPackages['atom-html-preview']
-        #   @toolBar.addButton
-        #     'icon': 'globe'
-        #     'callback': 'atom-html-preview:toggle'
-        #     'tooltip': 'HTML Preview'
+        if atom.packages.loadedPackages['atom-html-preview']
+          @toolBar.addButton
+            'icon': 'globe'
+            'callback': 'atom-html-preview:toggle'
+            'tooltip': 'HTML Preview'
